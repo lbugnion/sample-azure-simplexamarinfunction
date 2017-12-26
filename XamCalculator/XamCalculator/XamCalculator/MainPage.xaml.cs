@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -52,7 +53,10 @@ namespace XamCalculator
                     var url = Url.Replace("{num1}", number1.ToString())
                         .Replace("{num2}", number2.ToString());
                     var result = await Client.GetStringAsync(url);
-                    Result.Text = result + $" {result.GetType()}";
+
+                    var deserialized = JsonConvert.DeserializeObject<Result>(result);
+
+                    Result.Text = deserialized.Addition + $" {deserialized.Addition.GetType()}";
                 }
                 catch (Exception ex)
                 {
