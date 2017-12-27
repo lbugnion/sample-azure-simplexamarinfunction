@@ -56,4 +56,37 @@ To create the Azure Functions application, follow the steps:
 
 ![Application submenus](./Img/2017-12-25_11-40-33.png)
 
-8. Now we need to choose what will *trigger* the function that we will create. There are a large number of triggers available and we cannot review all of them here. You can find some examples of 
+Now we need to choose what will *trigger* the function that we will create. There are a large number of triggers available and we cannot review all of them here. The most common triggers are:
+
+- HTTP Trigger: The function will be executed when an HTTP request is arriving. This is the type of trigger we will use here.
+- Timer trigger: The function is executed every interval of time, where the interval is specified [by a CRON expression](https://en.wikipedia.org/wiki/Cron#CRON_expression).
+- Blob trigger: The function is executed when a file is uploaded to a given blob container
+- and more...
+
+8. Click on the "Custom function" button as shown below.
+
+![Custom function](./Img/2017-12-25_11-41-25.png)
+
+9. You will now see a large list of potential triggers, which can be implemented in various languages. Scroll down until you see the "HTTP trigger with parameter". In this sample, we will create the function in C#, so click the corresponding button.
+
+![HTTP trigger with parameter](./Img/2017-12-25_12-14-21.png)
+
+10. Enter a name for the function (for example "Add") and press Create.
+
+![Function creation](./Img/2017-12-25_12-15-02.png)
+
+11. The function is created and some basic implementation is added. Let's test to see how the function works. Since it is an HTTP trigger, we can execute the function by calling a URL. You can get the URL from the top right corner, where the "Get function URL" button is found.
+
+![Get function URL](./Img/2017-12-25_12-22-15.png)
+
+12. Copy the URL from the popup window.
+
+![Function URL](./Img/2017-12-25_12-23-13.png)
+
+13. Open a web browser window and paste the link into the location bar. Before you press the Enter key, make sure to replace the ```{name}``` parameter in the URL with your own name. Then press enter and you should see the response "Hello Laurent" appear (except that your own name should be shown instead of Laurent).
+
+## Conclusion
+
+We now have the infrastructure in place for our Azure Function. Once you are a bit more experienced, the process of creating such a function should not take more than a few minutes. 
+
+[In the next section, we will now modify the function's interface and then implement it.](./implementing.md)
