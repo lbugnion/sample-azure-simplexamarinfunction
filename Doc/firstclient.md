@@ -2,6 +2,8 @@
 
 We know that [our function works well now](./implementing.md), and we tested it in a web browser. Now we will build a Xamarin.Forms client that runs on iOS, Android and Windows to use this new API.
 
+[In the previous step](./implementing.md), we copied the function's URL for later usage. Make sure to keep this URL handy, we will need it later in the client's code.
+
 1. In Visual Studio 2017, select File, New, Project.
 
 > Note: We use Visual Studio 2017 on Windows for this sample, but you can also create Xamarin.Forms applications in earlier versions of Visual Studio if you prefer. Xamarin is available for free in all versions of Visual Studio, including the free Community editions.
@@ -75,3 +77,89 @@ The code above creates a new user interface with 4 UI elements placed under each
 6. Open the MainPage.xaml.cs now. This C# code file is what we call "code behind". This is the view's controller, where we will handle events and modify the UI accordingly.
 
 7. 
+
+7. Replace the ```MainPage``` constructor with the following code:
+
+```CS
+public partial class MainPage : ContentPage
+{
+    private const string Url = "YOUR URL HERE";
+
+    private HttpClient _client;
+
+    private HttpClient Client
+    {
+        get
+        {
+            if (_client == null)
+            {
+                _client = new HttpClient();
+            }
+
+            return _client;
+        }
+    }
+
+    public MainPage()
+    {
+        InitializeComponent();
+
+        AddButton.Clicked += async (s, e) =>
+        {
+            int number1 = 0, number2 = 0;
+
+            var success = int.TryParse(Number1.Text, out number1)
+                && int.TryParse(Number2.Text, out number2);
+
+            if (!success)
+            {
+                await DisplayAlert("Error in inputs", "You must enter two integers", "OK");
+                return;
+            }
+
+            Result.Text = "Please wait...";
+            Exception error = null;
+
+            try
+            {
+                var url = Url.Replace("{num1}", number1.ToString())
+                    .Replace("{num2}", number2.ToString());
+                var result = await Client.GetStringAsync(url);
+                Result.Text = result + $" {result.GetType()}";
+            }
+            catch (Exception ex)
+            {
+                error = ex;
+            }
+
+            if (error != null)
+            {
+                Result.Text = "Error!!";
+                await DisplayAlert("There was an error", error.Message, "OK");
+            }
+        };
+    }
+}
+```
+
+What the code above does is the following:
+
+- We define a constant for the URL template for the service. You should replace the words ```YOUR URL HERE``` with the URL that [you copied in the previous step](./implementing.md).
+
+- We define an ```HttpClient``` as a property so that we can easily reuse it. Like the name shows, the ```HttpClient``` is a class designed for interaction with servers over HTTP. It is the most convenient and simple way to access an HTTP service, such as our HTTP-Triggered function. 
+
+- In the ```MainPage``` constructor, we will handle the Clicked event of the Button control. When this event is called, the event handler will be executed.
+
+- We parse the text that the user entered. We want to make sure that we send integers to the server, to avoid error there. Parsing the text with the ```TryParse``` method ensures that the user input is suitable.
+
+- If the user enters incorrect inputs, we show a warning message and we stop the execution.
+
+- We show a message to the user saying ```Please wait```. This is because we will perform an asynchronous operation that could take a moment, and it is nice to let the user know what's happening.
+
+The next execution block is placed in a ```try/catch``` so that we catch any potential error and inform the user accordingly. The ```HttpClient``` may throw an exception if the server is down, or if there is a server error for example. If such an exception occurs, we need to make sure that the application doesn't crash and that the user knows what happened.
+
+- We create the URL out of the URL template declared as a constant higher up. In this URL, the first and second numbers are defined as ```{num1}``` and ```{num2}```. 
+
+- The next line is the call to the ```GetStringAsync``` method of the ```HttpClient```. This method is asynchronous, like the name shows. This is why we use the ```await``` keyword when we call it. 
+
+> Note: Calling the method with the ```await``` keyword

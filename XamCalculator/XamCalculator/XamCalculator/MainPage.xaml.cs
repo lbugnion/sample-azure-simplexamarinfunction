@@ -11,7 +11,7 @@ namespace XamCalculator
 {
 	public partial class MainPage : ContentPage
 	{
-        private const string Url = "https://xamfunctionssample.azurewebsites.net/api/add/num1/{num1}/num2/{num2}?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==";
+        private const string Url = "https://lbcalculator.azurewebsites.net/api/add/num1/{num1}/num2/{num2}?code=Ns5i7ag4xDCCrRHpZ8lsnF4WYa2gOet2bM5bYChzZld1Nq2knJIu9w==";
 
         private HttpClient _client;
 
@@ -53,10 +53,7 @@ namespace XamCalculator
                     var url = Url.Replace("{num1}", number1.ToString())
                         .Replace("{num2}", number2.ToString());
                     var result = await Client.GetStringAsync(url);
-
-                    var deserialized = JsonConvert.DeserializeObject<Result>(result);
-
-                    Result.Text = deserialized.Addition + $" {deserialized.Addition.GetType()}";
+                    Result.Text = result + $" {result.GetType()}";
                 }
                 catch (Exception ex)
                 {
@@ -69,6 +66,6 @@ namespace XamCalculator
                     await DisplayAlert("There was an error", error.Message, "OK");
                 }
             };
-		}
-	}
+        }
+    }
 }

@@ -9,100 +9,30 @@
     3. Calling
 
 
-using System.Net;
-
-public static HttpResponseMessage Run(HttpRequestMessage req, string name, TraceWriter log)
-{
-    log.Info("C# HTTP trigger function processed a request.");
-
-    // Fetching the name from the path parameter in the request URL
-    return req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
-}
-
-
----------------------------------------------
-
-https://xamfunctionssample.azurewebsites.net/api/HttpTriggerCSharp/name/{name}?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==
-
-https://xamfunctionssample.azurewebsites.net/api/add/num1/{num1}/num2/{num2}?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==
-
----------------------------------------------
-
-using System.Net;
-
-public static HttpResponseMessage Run(
-    HttpRequestMessage req, 
-    int num1,
-    int num2,
-    TraceWriter log)
-{
-    log.Info("C# HTTP trigger function processed a request.");
-
-    // Fetching the name from the path parameter in the request URL
-    return req.CreateResponse(HttpStatusCode.OK, $"Called {num1} + {num2}" );
-}
-
------------------------------------------------
-
-using System.Net;
-
-public static HttpResponseMessage Run(
-    HttpRequestMessage req, 
-    int num1,
-    int num2,
-    TraceWriter log)
-{
-    var start = DateTime.Now;
-
-    log.Info($"C# HTTP trigger function processed a request with {num1} and {num2}");
-
-    var addition = num1 + num2;
-
-    // Fetching the name from the path parameter in the request URL
-    return req.CreateResponse(HttpStatusCode.OK, addition);
-}
-
--------------------------------------------------
-
-public MainPage()
-{
-    InitializeComponent();
-
-    AddButton.Clicked += async (s, e) =>
+    public static class Function1
     {
-        int number1 = 0, number2 = 0;
-
-        var success = int.TryParse(Number1.Text, out number1)
-            && int.TryParse(Number2.Text, out number2);
-
-        if (!success)
+        [FunctionName("Function1")]
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
-            await DisplayAlert("Error in inputs", "You must enter two integers", "OK");
-            return;
-        }
+            log.Info("C# HTTP trigger function processed a request.");
 
-        Result.Text = "Please wait...";
-        Exception error = null;
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+                .Value;
 
-        try
-        {
-            var url = Url.Replace("{num1}", number1.ToString())
-                .Replace("{num2}", number2.ToString());
-            var result = await Client.GetStringAsync(url);
-            Result.Text = result + $" {result.GetType()}";
-        }
-        catch (Exception ex)
-        {
-            error = ex;
-        }
+            // Get request body
+            dynamic data = await req.Content.ReadAsAsync<object>();
 
-        if (error != null)
-        {
-            Result.Text = "Error!!";
-            await DisplayAlert("There was an error", error.Message, "OK");
+            // Set name to query string or body data
+            name = name ?? data?.name;
+
+            return name == null
+                ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+                : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
         }
-    };
-}
+    }
+
 
 --------------------------------------------------
 

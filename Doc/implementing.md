@@ -1,6 +1,8 @@
 # Modifying the function's interface and implementing it
 
-At this stage [we have created a basic function with the default implementation](./creating.md). Now we are going to modify its interface to suit our purpose, and we will implement its code.
+At this stage [we have created a basic function with the default implementation in the Azure portal](./creating.md). Now we are going to modify its interface to suit our purpose, and we will implement its code.
+
+> Note: You can also create the Azure Function in Visual Studio 2017 if you prefer. [You can find a complete tutorial here](./creatingvs.md).
 
 ## Modifying the interface
 
@@ -99,8 +101,6 @@ public static HttpResponseMessage Run(
     int num2,
     TraceWriter log)
 {
-    var start = DateTime.Now;
-
     log.Info($"C# HTTP trigger function processed a request with {num1} and {num2}");
 
     var addition = num1 + num2;
@@ -111,6 +111,20 @@ public static HttpResponseMessage Run(
 ```
 
 2. Return to the previous browser window where we tested the function's signature before, and refresh the page. After a short wait, you should now see the result ```46```.
+
+Interestingly, in the code above we simply declared that ```num1``` and ```num2``` are integers, and the function runtime automatically parsed the values from the URL into integers for us. This is quite convenient.
+
+## Getting the URL for the Xamarin client
+
+Later in the sample, we will need the URL of the service for our client. Since all the communication between the client and the server happens over HTTP, the URL is the interface for it.
+
+3. In the web portal, above the code editor window, click on the "Get function URL" button.
+
+![Get function URL](./Img/2017-12-25_12-22-15.png)
+
+4. Copy the URL from the pop-up window and keep it safe for later.
+
+![Function URL](./Img/2018-01-03_14-40-53.png)
 
 ## Conclusion
 
