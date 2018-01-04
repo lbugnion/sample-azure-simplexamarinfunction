@@ -118,6 +118,7 @@ public partial class MainPage : ContentPage
             }
 
             Result.Text = "Please wait...";
+            AddButton.IsEnabled = false;
             Exception error = null;
 
             try
@@ -137,6 +138,8 @@ public partial class MainPage : ContentPage
                 Result.Text = "Error!!";
                 await DisplayAlert("There was an error", error.Message, "OK");
             }
+
+            AddButton.IsEnabled = true;
         };
     }
 }
@@ -154,7 +157,7 @@ What the code above does is the following:
 
 - If the user enters incorrect inputs, we show a warning message and we stop the execution.
 
-- We show a message to the user saying ```Please wait```. This is because we will perform an asynchronous operation that could take a moment, and it is nice to let the user know what's happening.
+- We show a message to the user saying ```Please wait```. This is because we will perform an asynchronous operation that could take a moment, and it is nice to let the user know what's happening. On the next line, we also disable the ```AddButton``` to avoid that the user presses the button again while the operation is active.
 
 The next execution block is placed in a ```try/catch``` so that we catch any potential error and inform the user accordingly. The ```HttpClient``` may throw an exception if the server is down, or if there is a server error for example. If such an exception occurs, we need to make sure that the application doesn't crash and that the user knows what happened.
 
@@ -162,4 +165,52 @@ The next execution block is placed in a ```try/catch``` so that we catch any pot
 
 - The next line is the call to the ```GetStringAsync``` method of the ```HttpClient```. This method is asynchronous, like the name shows. This is why we use the ```await``` keyword when we call it. 
 
-> Note: Calling the method with the ```await``` keyword
+> Note: Calling the method with the ```await``` keyword does not block the method's execution. It means that the user interface will remaind usable. This is why informing the user is important.
+
+- If everything works well, we show the result of the operation to the user. In this sample I am also showing the type of the result, which is a string (as returned by the web service). Later we will see how we can modify this part to make it more convenient to use.
+
+- Outside of the try/catch block, we check if there was an error. Note that you cannot use DisplayAlert asynchronously from within the ```catch``` block because the ```await``` keyword is not allowed there. This is why we saved the potential error, and later we check if there was an error, and show the message to the user if needed.
+
+- Finally we re-enable the ```AddButton``` so the user can try another operation.
+
+## Testing the app
+
+You can run and test the application on an emulator/simulator, or on a device directly.
+
+### On Android
+
+For example, here is how you can test the Xamarin app on Android:
+
+1. Right click on the Android application and select "Set as StartUp Project".
+
+![Android application](./Img/2018-01-04_15-25-17.png)
+
+2. Make sure that an emulator is selected in the Run dropdown.
+
+![Run button](./Img/2018-01-04_15-26-08.png)
+
+3. Press the Run button to debug the code.
+
+4. In the emulator window, enter two operands and press the Add button. After a short wait, you should see the result.
+
+![Android application](./Img/2018-01-04_15-30-54.png)
+
+### On iOS
+
+### On Windows (UWP)
+
+To test on Windows, you can run the application on the local machine directly from Visual Studio 2017 for Windows.
+
+1. Right click on the UWP application and select "Set as StartUp Project".
+
+![Set as StartUp Project](./Img/2018-01-04_15-18-41.png)
+
+2. Make sure that x86 and Local Machine are selected in the toolbar.
+
+![Run button](./Img/2018-01-04_15-19-44.png)
+
+3. Press the Run button to debug the code.
+
+4. In the window that opens up, enter two operands and press the Add button. After a short wait, you should see the result.
+
+![Windows UWP application](./Img/2018-01-04_15-24-40.png)

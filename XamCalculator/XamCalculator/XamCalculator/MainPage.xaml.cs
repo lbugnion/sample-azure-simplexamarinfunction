@@ -46,6 +46,7 @@ namespace XamCalculator
                 }
 
                 Result.Text = "Please wait...";
+                AddButton.IsEnabled = false;
                 Exception error = null;
 
                 try
@@ -65,6 +66,8 @@ namespace XamCalculator
                     Result.Text = "Error!!";
                     await DisplayAlert("There was an error", error.Message, "OK");
                 }
+
+                AddButton.IsEnabled = true;
             };
         }
     }
