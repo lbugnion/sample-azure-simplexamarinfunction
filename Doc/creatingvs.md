@@ -16,8 +16,6 @@ To create the function application in Visual Studio, you will need Visual Studio
 
 4. Enter a name for the Function application. Note that you can have multiple functions in one Function application. Then press OK.
 
-> Note: The function's name should be unique and will appear in the function's URL. For example if the function is named LbCalculator, the domain will be https://lbcalculator.azurewebsites.net.
-
 5. In the New Template dialog, select Http trigger and the following options:
 
     - Azure Functions v1 (.NET framework). If you prefer, you can also select Azure Functions v2 (.NET core). The advantage of a .NET core function application is that it can run on servers with Linux. However some features are unavailable at this point.
@@ -94,3 +92,52 @@ Now that we have created and tested the function, we can publish it to Azure. In
 
 In this simple sample, we will use the Publish feature of Visual Studio instead.
 
+1. In the Solution Explorer, right click on the functions application and select Publish from the context menu.
+
+![Publish](./Img/2018-01-04_11-14-39.png)
+
+2. In the next dialog, select Create New in order to create a new Functions application. In this dialog, you could also select an existing Functions application if you have one that you wish to replace with this one.
+
+![Publish dialog](./Img/2018-01-04_11-15-00.png)
+
+3. In the Create Service dialog, set the following information:
+
+- App Name: This is the name that will be used in the Azure portal.
+
+> Note: The function's name should be unique and will appear in the function's URL. For example if the function is named LbCalculator, the domain will be https://lbcalculator.azurewebsites.net.
+
+- Subscription: This is the Azure subscription that will be billed. Note that you can create a free subscription for trial at https://azure.microsoft.com/free
+
+- Resource group: This is a logical grouping of your application's resources, to make it easier to manage them. You can create a new resource group or select am existing one.
+
+- App service plan: TODO
+
+![Create App Service](./Img/2018-01-04_11-30-09.png)
+
+3. Click on the Create button. After the publication succeeds you will see a new dialog with information about the application.
+
+![Successful publication](./Img/2018-01-04_11-32-51.png)
+
+## Getting the URL for the Xamarin client
+
+Later in the sample, we will need the URL of the service for our client. Since all the communication between the client and the server happens over HTTP, the URL is the interface for it.
+
+1. Log into the Azure web portal. In the menu on the left, select Function Apps.
+
+![Azure Web Portal menu](./Img/2018-01-04_11-34-15.png)
+
+2. Locate the functions application that you just published and click on the Add function.
+
+![Add function](./Img/2018-01-04_11-34-46.png)
+
+3. Above the code editor window, click on the "Get function URL" button.
+
+![Get Function URL](./Img/2018-01-04_11-35-04.png)
+
+4. Copy the URL from the pop-up window and keep it safe for later.
+
+![Function URL](./Img/2018-01-04_11-35-45.png)
+
+## Conclusion
+
+Our function's code is now complete and available for additional features in Visual Studio. We can now [move to the client's implementation](./firstclient.md).
