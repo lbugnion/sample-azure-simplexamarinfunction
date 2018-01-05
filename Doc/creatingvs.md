@@ -72,4 +72,25 @@ There are a few interesting things about the code above:
 
 One of he greatest advantages of Visual Studio over the Azure web portal for function creation and implementation is that you can run the function locallu, which is very convenient for test purposes.
 
-1. 
+1. In the code editor, in Add.cs, place a breakpoint on the first line of the Run method, where the log call is placed.
+
+2. Run the function in debug mode. This will start the Azure Function runtime in a command window.
+
+> Note: The Azure runtime which is installed locally is an exact copy of the Azure runtime running in Azure. This is not a simulator. This ensures that you get conditions as closed to reality as possible.
+
+3. At the bottom of the command window, you will find the local URL of the function. Copy this URL which should be similar to ```http://localhost:7071/api/add/num1/{num1}/num2/{num2}```
+
+![Command window with Function runtime](./Img/2018-01-05_15-19-23.png)
+
+4. Open a web browser window and paste the URL in the location bar.
+
+5. In the URL, replace ```{num1}``` with an integer, for example 12. Then replace ```{num2}``` with another integer, for example 34. Then press Enter to load the page.
+
+6. The application should break in the debugger in Visual Studio, at the breakpoint that you placed earlier. You can now inspect the ```num1``` and ```num2``` operands, and step through the function's code to debug it.
+
+## Publishing the function to Azure
+
+Now that we have created and tested the function, we can publish it to Azure. In practice for larger applications, the Publishing step would be taken care of by a script and some tooling. Also, we wouldn't publish to a production server first but we would deploy to a test server and run additional tests before moving the code to production.
+
+In this simple sample, we will use the Publish feature of Visual Studio instead.
+
