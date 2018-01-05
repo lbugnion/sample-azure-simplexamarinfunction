@@ -197,6 +197,22 @@ For example, here is how you can test the Xamarin app on Android:
 
 ### On iOS
 
+On iOS you can run the app in the iOS simulator to test it.
+
+1. Right click on the iOS application and select "Set as Startup Project".
+
+![iOS application](./Img/2018-01-04_20-33-16.png)
+
+2. Make sure that "iPhoneSimulator" and a simulator are selected in the toolbar.
+
+![Run button](./Img/2018-01-04_20-33-37.png)
+
+3. Press the Run button to debug the code.
+
+4. In the simulator window, enter two operands and press the Add button. After a short wait, you should see the result.
+
+![iOS application](./Img/2018-01-04_20-35-52.png)
+
 ### On Windows (UWP)
 
 To test on Windows, you can run the application on the local machine directly from Visual Studio 2017 for Windows.
@@ -214,3 +230,10 @@ To test on Windows, you can run the application on the local machine directly fr
 4. In the window that opens up, enter two operands and press the Add button. After a short wait, you should see the result.
 
 ![Windows UWP application](./Img/2018-01-04_15-24-40.png)
+
+## Conclusion
+
+We have now tested that the application works well. This concludes this sample. You can now easily modify this application to add features or change the way it works. We hope that you found this sample useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open so everyone can see the answers. 
+
+Happy coding!
+Laurent
