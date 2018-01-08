@@ -34,7 +34,7 @@ When the function application is created, it gives the default name "Function1" 
 public static class Add
 {
     [FunctionName("Add")]
-    public static async Task<HttpResponseMessage> Run(
+    public static HttpResponseMessage Run(
         [HttpTrigger(
             AuthorizationLevel.Function, 
             "get",
@@ -141,3 +141,5 @@ Later in the sample, we will need the URL of the service for our client. Since a
 ## Conclusion
 
 Our function's code is now complete and available for additional features in Visual Studio. We can now [move to the client's implementation](./firstclient.md).
+
+Later we will also refactor [the server](./refactoring.md) and [the client](./refactoredclient.md) to use JavaScript Object Notation JSON to communicate.

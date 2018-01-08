@@ -1,17 +1,18 @@
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Calculator.Data;
+using System;
 
 namespace LbCalculator
 {
     public static class Add
     {
         [FunctionName("Add")]
-        public static async Task<HttpResponseMessage> Run(
+        public static HttpResponseMessage Run(
             [HttpTrigger(
                 AuthorizationLevel.Function, 
                 "get",
@@ -25,8 +26,14 @@ namespace LbCalculator
 
             var addition = num1 + num2;
 
+            var result = new AdditionResult
+            {
+                Result = addition,
+                TimeOnServer = DateTime.Now
+            };
+
             // Fetching the name from the path parameter in the request URL
-            return req.CreateResponse(HttpStatusCode.OK, addition);
+            return req.CreateResponse(HttpStatusCode.OK, result, "application/json");
         }
     }
 }
