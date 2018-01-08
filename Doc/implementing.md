@@ -2,7 +2,7 @@
 
 At this stage [we have created a basic function with the default implementation in the Azure portal](./creating.md). Now we are going to modify its interface to suit our purpose, and we will implement its code.
 
-> Note: You can also create the Azure Function in Visual Studio 2017 if you prefer. [You can find a complete tutorial here](./creatingvs.md).
+> Note: You can also create the Azure Function in Visual Studio 2017 if you prefer. [You can find a complete tutorial here](./creating-vs.md).
 
 ## Modifying the interface
 

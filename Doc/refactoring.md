@@ -4,6 +4,8 @@ One thing that we notice [when we use the Xamarin client](./firstclient.md) is t
 
 To avoid this kind of issues, many APIs these days use the JavaScript Object Notation JSON to encode the result of the function. JSON has various advantages: It is easy to serialize/deserialize and it can be transmitted as text over HTTP. We will now update our sample implementation to use JSON instead of a simple result.
 
+> Note: Some APIs also use XML to transmit data. XML is also text-based, so it also works fine with HTTP. However XML is more verbose than JSON and thus is lost in popularity, especially for mobile clients.
+
 ## Adding a class library
 
 In order to share code between the client and the server, we will use a class library that we will consume on the server and on the client. The class library can be seen as a contract between client and server. Follow the steps to add the class library to the server project:

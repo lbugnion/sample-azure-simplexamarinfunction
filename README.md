@@ -8,13 +8,19 @@ Later we will refine this application by using JSON as a communication medium be
 
 ## Table of content
 
-- [Creating the Azure Function in the Azure Web Portal](./Doc/creating.md)
+- [Creating the Azure Function in the Azure Web Portal](./Doc/creating.md).
 
-    - [Modifying the function's interface and implementing it](./Doc/implementing.md)
+    - [Modifying the function's interface and implementing it](./Doc/implementing.md).
 
-- [Creating the Azure Function in Visual Studio](./Doc/creatingvs.md)
+- [Creating the Azure Function in Visual Studio](./Doc/creating-vs.md).
 
-- [Implementing the first version of the Xamarin.Forms client](./Doc/firstclient.md)
+- [Implementing the first version of the Xamarin.Forms client](./Doc/first-client.md).
 
-- Modifying the application to use JSON instead (coming soon).
+## Modifying the application to use JavaScript Object Notation JSON instead
+
+In this section, we will modify the function application interface to use JSON instead of normal text to pass the result to the client.
+
+- [Modifying the server application to use JSON](./Doc/refactoring.md).
+
+- [Modifying the client application to use JSON](./Doc/refactoring-client.md).
 
