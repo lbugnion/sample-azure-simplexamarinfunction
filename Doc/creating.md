@@ -60,9 +60,9 @@ To create the Azure Functions application in the Azure portal, follow these step
 
 Now we need to choose what will *trigger* the function that we will create. There are a large number of triggers available and we cannot review all of them here, but there is [documentation available on our Docs website](http://gslb.ch/a63). The most common triggers are:
 
-- HTTP Trigger: The function will be executed when an HTTP request arrives. This is the type of trigger we will use.
-- Timer trigger: The function is executed every interval of time, where the interval is specified [by a CRON expression](https://en.wikipedia.org/wiki/Cron#CRON_expression).
-- Blob trigger: The function is executed when a file is uploaded to a given blob container
+- [HTTP Trigger](http://gslb.ch/a65): The function will be executed when an HTTP request arrives. This is the type of trigger we will use.
+- [Timer trigger](http://gslb.ch/a66): The function is executed every interval of time, where the interval is specified [by a CRON expression](https://en.wikipedia.org/wiki/Cron#CRON_expression).
+- [Blob trigger](http://gslb.ch/a64): The function is executed when a file is uploaded to a given blob container
 - [and more...](http://gslb.ch/a63)
 
 8. Click on the "Custom function" button as shown below.

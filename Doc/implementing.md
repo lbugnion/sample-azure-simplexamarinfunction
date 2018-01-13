@@ -126,5 +126,5 @@ Later in the sample, we will need the URL of the service for our client. Since a
 
 ## Conclusion
 
-Our function's code is now complete. We can now [move to the client's implementation](./firstclient.md).
+Our function's code is now complete. We can now [move to the client's implementation](./first-client.md).
 

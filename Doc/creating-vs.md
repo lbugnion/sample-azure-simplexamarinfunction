@@ -140,6 +140,6 @@ Later in the sample, we will need the URL of the service for our client app. Sin
 
 ## Conclusion
 
-Our function's code is now complete and available for additional features in Visual Studio. We can now [move to the client's implementation](./firstclient.md).
+Our function's code is now complete and available for additional features in Visual Studio. We can now [move to the client's implementation](./first-client.md).
 
-Later we will also refactor [the server](./refactoring.md) and [the client](./refactoredclient.md) to use JavaScript Object Notation JSON to communicate.
+Later we will also refactor [the server](./refactoring.md) and [the client](./refactoring-client.md) to use JavaScript Object Notation JSON to communicate.

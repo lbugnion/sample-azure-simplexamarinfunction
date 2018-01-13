@@ -1,8 +1,11 @@
 # Implementing the first version of the Xamarin.Forms client app
 
-We know that [our function works well now](./implementing.md), and we tested it in a web browser. Now we will build a Xamarin.Forms client app that runs on iOS, Android and Windows to use this new function.
+We know that our function works well now, because we tested it [in the Azure Portal](./implementing.md) and [in Visual Studio 2017](./creating-vs.md). Now we will build a Xamarin.Forms client app that runs on iOS, Android and Windows to use this new function.
 
-[In the previous step](./implementing.md), we copied the function's URL for later usage. Make sure to keep this URL handy, we will need it later in the client's code.
+In the previous step, we copied the function's URL for later usage. Make sure to keep this URL handy, we will need it later in the client's code.
+
+- [Copying the URL when creating the Function in the Azure Portal](./implementing.md#getting-the-url-for-the-xamarin-client)
+- [Copying the URL when creating the Function in Visual Studio 2017](./creating-vs.md#getting-the-url-for-the-xamarin-client-app)
 
 1. In Visual Studio 2017, select File > New > Project.
 
