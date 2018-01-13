@@ -1,12 +1,12 @@
-# Implementing the first version of the Xamarin.Forms client
+# Implementing the first version of the Xamarin.Forms client app
 
-We know that [our function works well now](./implementing.md), and we tested it in a web browser. Now we will build a Xamarin.Forms client that runs on iOS, Android and Windows to use this new API.
+We know that [our function works well now](./implementing.md), and we tested it in a web browser. Now we will build a Xamarin.Forms client app that runs on iOS, Android and Windows to use this new function.
 
 [In the previous step](./implementing.md), we copied the function's URL for later usage. Make sure to keep this URL handy, we will need it later in the client's code.
 
-1. In Visual Studio 2017, select File, New, Project.
+1. In Visual Studio 2017, select File > New > Project.
 
-> Note: We use Visual Studio 2017 on Windows for this sample, but you can also create Xamarin.Forms applications in earlier versions of Visual Studio if you prefer. Xamarin is available for free in all versions of Visual Studio, including the free Community editions.
+> Note: We use Visual Studio 2017 on Windows for this sample, but you can also create Xamarin.Forms applications in Visual Studio for Mac if you prefer. Xamarin is available for free in all editions of Visual Studio, including the free Community edition, on PC and Mac.
 > - [Visual Studio Community Edition for Windows](https://www.visualstudio.com/vs/community/)
 > - [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
 
@@ -25,7 +25,7 @@ We know that [our function works well now](./implementing.md), and we tested it 
 
 The new application consists of 4 projects:
 
-- XamCalculator: This is the shared user interface project, where we will implement the UI and the code calling the function. This project is referenced by each of the 3 other projects.
+- XamCalculator: This is the shared .NET Standard project, where we will implement the UI and the code calling the function. This project is referenced by each of the 3 other projects.
 - XamCalculator.Android: The Android version of the application.
 - XamCalculator.iOS: The iOS version of the application.
 - XamCalculator.UWP: The Universal Windows Platform (UWP) of the application.
@@ -34,7 +34,7 @@ Later we will see how we can select each application to test it and run it.
 
 4. In the XamCalculator project, select the MainPage.xaml and open it in the editor.
 
-5. Replace the XAML code with the following:
+5. Replace the existing XAML with the following:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -66,17 +66,15 @@ Later we will see how we can select each application to test it and run it.
 </ContentPage>
 ```
 
-The code above creates a new user interface with 4 UI elements placed under each other. The layout is performed by the ```StackLayout``` panel. By default, the StackLayout uses a vertical layout, but it could also be changed to horizontal if needed. [There are many other layout types](https://developer.xamarin.com/guides/xamarin-forms/user-interface/controls/layouts/) that can be used to create more complex layouts.
+The code above creates a new user interface with 4 UI elements placed under each other. The layout is performed by the ```StackLayout``` panel. By default, the StackLayout uses a vertical layout, but it could also be changed to horizontal if needed. [There are many other layout types](https://developer.xamarin.com/guides/xamarin-forms/user-interface/controls/layouts) that can be used to create more complex layouts.
 
-- The first and second UI elements are [Entry controls](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/#Entry) where the user will be able to enter some text. We will access this text from the code behind. Note how we use the [Placeholder propert](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/entry/#Placeholders) to show a readonly text when the field is empty. The controls are named ```Number1``` and ```Number2```.
+- The first and second UI elements are [Entry controls](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/#Entry) where the user will be able to enter some text. We will access this text from the code behind. Note how we use the [Placeholder property](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/entry/#Placeholders) to show a placeholder text when the field is empty. The controls are named ```Number1``` and ```Number2```.
 
 - The third element is a [Button control](https://developer.xamarin.com/api/type/Xamarin.Forms.Button/). This control can be clicked by the user, which will create an event that we will respond to. The button is named ```AddButton```.
 
 - The last element is a [Label control](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/#Label), used to show some simple text output to the user. The Label is named ```Result```.
 
 6. Open the MainPage.xaml.cs now. This C# code file is what we call "code behind". This is the view's controller, where we will handle events and modify the UI accordingly.
-
-7. 
 
 7. Replace the ```MainPage``` constructor with the following code:
 
@@ -149,7 +147,7 @@ What the code above does is the following:
 
 - We define a constant for the URL template for the service. You should replace the words ```YOUR URL HERE``` with the URL that [you copied in the previous step](./implementing.md).
 
-- We define an ```HttpClient``` as a property so that we can easily reuse it. Like the name shows, the ```HttpClient``` is a class designed for interaction with servers over HTTP. It is the most convenient and simple way to access an HTTP service, such as our HTTP-Triggered function. 
+- We define an ```HttpClient``` as a property so that we can easily reuse it. Like the name suggests, the ```HttpClient``` is a class designed for interaction with servers over HTTP. It is the most convenient and simple way to access an HTTP service, such as our HTTP-Triggered function. 
 
 - In the ```MainPage``` constructor, we will handle the Clicked event of the Button control. When this event is called, the event handler will be executed.
 
@@ -159,19 +157,19 @@ What the code above does is the following:
 
 - We show a message to the user saying ```Please wait```. This is because we will perform an asynchronous operation that could take a moment, and it is nice to let the user know what's happening. On the next line, we also disable the ```AddButton``` to avoid that the user presses the button again while the operation is active.
 
-The next execution block is placed in a ```try/catch``` so that we catch any potential error and inform the user accordingly. The ```HttpClient``` may throw an exception if the server is down, or if there is a server error for example. If such an exception occurs, we need to make sure that the application doesn't crash and that the user knows what happened.
+The next execution block is placed in a ```try/catch``` so that we catch any potential error and inform the user accordingly. The ```HttpClient``` may throw an exception if the server is down, or if there is a server error for example. If such an exception occurs, we need to make sure that the application doesn't crash, and that the user knows what happened.
 
 - We create the URL out of the URL template declared as a constant higher up. In this URL, the first and second numbers are defined as ```{num1}``` and ```{num2}```. 
 
-- The next line is the call to the ```GetStringAsync``` method of the ```HttpClient```. This method is asynchronous, like the name shows. This is why we use the ```await``` keyword when we call it. 
+- The next line is the call to the ```GetStringAsync``` method of the ```HttpClient```. This method is asynchronous, like the name suggests. This is why we use the ```await``` keyword when we call it. 
 
-> Note: Calling the method with the ```await``` keyword does not block the method's execution. It means that the user interface will remaind usable. This is why informing the user is important.
+> Note: Calling the method with the ```await``` keyword does not block the method's execution. It means that the user interface will remain usable. This is why informing the user is important.
 
-- If everything works well, we show the result of the operation to the user. In this sample I am also showing the type of the result, which is a string (as returned by the web service). Later we will see how we can modify this part to make it more convenient to use.
+- If everything works well, we show the result of the operation to the user. In this sample I am also showing the type of the result, which is a string (as returned by the web service). [Later we will see how we can modify this part](./refactoring-client.md) to make it more convenient to use.
 
 - Outside of the try/catch block, we check if there was an error. Note that you cannot use DisplayAlert asynchronously from within the ```catch``` block because the ```await``` keyword is not allowed there. This is why we saved the potential error, and later we check if there was an error, and show the message to the user if needed.
 
-- Finally we re-enable the ```AddButton``` so the user can try another operation.
+- Finally, we re-enable the ```AddButton``` so the user can try another operation.
 
 ## Testing the app
 
@@ -179,9 +177,9 @@ You can run and test the application on an emulator/simulator, or on a device di
 
 ### On Android
 
-For example, here is how you can test the Xamarin app on Android:
+For example, here is how you can test the app on Android:
 
-1. Right click on the Android application and select "Set as StartUp Project".
+1. Right-click on the Android application and select "Set as Startup Project".
 
 ![Android application](./Img/2018-01-04_15-25-17.png)
 
@@ -199,7 +197,7 @@ For example, here is how you can test the Xamarin app on Android:
 
 On iOS you can run the app in the iOS simulator to test it.
 
-1. Right click on the iOS application and select "Set as Startup Project".
+1. Right-click on the iOS application and select "Set as Startup Project".
 
 ![iOS application](./Img/2018-01-04_20-33-16.png)
 
@@ -215,9 +213,9 @@ On iOS you can run the app in the iOS simulator to test it.
 
 ### On Windows (UWP)
 
-To test on Windows, you can run the application on the local machine directly from Visual Studio 2017 for Windows.
+To test on Windows 10, you can run the application on the local machine directly from Visual Studio 2017.
 
-1. Right click on the UWP application and select "Set as StartUp Project".
+1. Right-click on the UWP application and select "Set as Startup Project".
 
 ![Set as StartUp Project](./Img/2018-01-04_15-18-41.png)
 
@@ -233,7 +231,7 @@ To test on Windows, you can run the application on the local machine directly fr
 
 ## Conclusion
 
-We have now tested that the application works well. This concludes this sample. You can now easily modify this application to add features or change the way it works. We hope that you found this sample useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open so everyone can see the answers. 
+We have now tested that the application works well. This concludes this sample. You can now easily modify this application to add features or change the way it works. We hope that you found this sample useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open, so everyone can see the answers. 
 
 Happy coding!
 Laurent
