@@ -148,7 +148,7 @@ public partial class MainPage : ContentPage
 
 What the code above does is the following:
 
-- We define a constant for the URL template for the service. You should replace the words ```YOUR URL HERE``` with the URL that [you copied in the previous step](./implementing.md).
+- We define a constant for the URL template for the service. You should replace the words ```YOUR URL HERE``` with the URL that you copied in the previous step.
 
 - We define an ```HttpClient``` as a property so that we can easily reuse it. Like the name suggests, the ```HttpClient``` is a class designed for interaction with servers over HTTP. It is the most convenient and simple way to access an HTTP service, such as our HTTP-Triggered function. 
 
