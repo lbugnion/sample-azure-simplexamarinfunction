@@ -10,8 +10,8 @@ In the previous step, we copied the function's URL for later usage. Make sure to
 1. In Visual Studio 2017, select File > New > Project.
 
 > Note: We use Visual Studio 2017 on Windows for this sample, but you can also create Xamarin.Forms applications in Visual Studio for Mac if you prefer. Xamarin is available for free in all editions of Visual Studio, including the free Community edition, on PC and Mac.
-> - [Visual Studio Community Edition for Windows](https://www.visualstudio.com/vs/community/)
-> - [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+> - [Visual Studio Community Edition for Windows](http://gslb.ch/a72)
+> - [Visual Studio for Mac](http://gslb.ch/a73)
 
 2. In the New Project dialog, select the Cross-Platform category, and then Cross-Platform App (Xamarin.Forms) with Visual C#. Name the new application ```XamCalculator```, select a location for the project and press OK.
 
