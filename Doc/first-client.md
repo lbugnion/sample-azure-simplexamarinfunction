@@ -69,13 +69,13 @@ Later we will see how we can select each application to test it and run it.
 </ContentPage>
 ```
 
-The code above creates a new user interface with 4 UI elements placed under each other. The layout is performed by the ```StackLayout``` panel. By default, the StackLayout uses a vertical layout, but it could also be changed to horizontal if needed. [There are many other layout types](https://developer.xamarin.com/guides/xamarin-forms/user-interface/controls/layouts) that can be used to create more complex layouts.
+The code above creates a new user interface with 4 UI elements placed under each other. The layout is performed by the ```StackLayout``` panel. By default, the StackLayout uses a vertical layout, but it could also be changed to horizontal if needed. [There are many other layout types](http://gslb.ch/a67) that can be used to create more complex layouts.
 
-- The first and second UI elements are [Entry controls](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/#Entry) where the user will be able to enter some text. We will access this text from the code behind. Note how we use the [Placeholder property](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/entry/#Placeholders) to show a placeholder text when the field is empty. The controls are named ```Number1``` and ```Number2```.
+- The first and second UI elements are [Entry controls](http://gslb.ch/a68) where the user will be able to enter some text. We will access this text from the code behind. Note how we use the [Placeholder property](http://gslb.ch/a69) to show a placeholder text when the field is empty. The controls are named ```Number1``` and ```Number2```.
 
-- The third element is a [Button control](https://developer.xamarin.com/api/type/Xamarin.Forms.Button/). This control can be clicked by the user, which will create an event that we will respond to. The button is named ```AddButton```.
+- The third element is a [Button control](http://gslb.ch/a70). This control can be clicked by the user, which will create an event that we will respond to. The button is named ```AddButton```.
 
-- The last element is a [Label control](https://developer.xamarin.com/guides/xamarin-forms/user-interface/text/#Label), used to show some simple text output to the user. The Label is named ```Result```.
+- The last element is a [Label control](http://gslb.ch/a71), used to show some simple text output to the user. The Label is named ```Result```.
 
 6. Open the MainPage.xaml.cs now. This C# code file is what we call "code behind". This is the view's controller, where we will handle events and modify the UI accordingly.
 
