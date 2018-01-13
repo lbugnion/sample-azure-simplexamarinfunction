@@ -6,15 +6,13 @@ At this stage [we have created a basic function with the default implementation 
 
 ## Modifying the interface
 
-At the moment, our function's URL looks something like that:
+At the moment, our function's URL looks something like:
 
 ```https://xamfunctionssample.azurewebsites.net/HttpTriggerCSharp/name/{name}?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==```
 
 What we need for our "Add" function however is two operands. We will call them ```num1``` and ```num2```. Also, the name ```HttpTriggerCSharp``` is not very descriptive and we will use a better name such as ```add```. So our target URL should be:
 
 ```https://xamfunctionssample.azurewebsites.net/api/add/num1/{num1}/num2/{num2}?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==```
-
-> Note: Two other things are annoying in this URL: The name ```xamfunctionssample.azurewebsites.net``` is not elegant nor personal. Also the query string ```?code=9r9jauRrThIFjGcP1nz3xRJLiriF9IAo5dmPlsLHBfS4hq0gv06E7A==``` is quite ugly. Thankfully these things can be fixed later by [setting up a short URL and a redirection]{./shortening.md}. We will see later how we can do that.
 
 1. In the web portal, under the function's name, click on the Integrate menu item.
 
@@ -48,7 +46,7 @@ public static HttpResponseMessage Run(
 }
 ```
 
-The code above expects two parameters ```num1``` and ```num2``` of type ```int```. The mapping between the URL and the function's signature will be done by the function's runtime. 
+The code above expects two parameters ```num1``` and ```num2``` of type ```int```. The mapping between the URL and the function's signature will be done by the Azure Functions runtime. 
 
 ## Testing the new signature
 
@@ -112,7 +110,7 @@ public static HttpResponseMessage Run(
 
 2. Return to the previous browser window where we tested the function's signature before, and refresh the page. After a short wait, you should now see the result ```46```.
 
-Interestingly, in the code above we simply declared that ```num1``` and ```num2``` are integers, and the function runtime automatically parsed the values from the URL into integers for us. This is quite convenient.
+Interestingly, in the code above we simply declared that ```num1``` and ```num2``` are integers, and the Azure Functions runtime automatically parsed the values from the URL into integers for us. This is quite convenient.
 
 ## Getting the URL for the Xamarin client
 

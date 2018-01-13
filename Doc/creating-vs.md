@@ -4,13 +4,13 @@ The great thing with the Azure tooling is that you can decide what tools you are
 
 ## Creating the function application
 
-To create the function application in Visual Studio, you will need Visual Studio 2017. You can perform these steps in any version of Studio, [including the free Community edition](TODO_LINK). In the installer, make sure that the Azure development workload is installed.
+To create the function application in Visual Studio, you will need Visual Studio 2017. You can perform these steps in any edition of Visual Studio, [including the free Community edition](TODO_LINK). In the installer, make sure that the Azure development workload is installed.
 
 ![Visual Studio installer](./Img/2018-01-05_13-43-24.png)
 
 1. Start Visual Studio 2017.
 
-2. Select File, New, Project from the menu bar.
+2. Select File > New > Project from the menu bar.
 
 3. In the New Project dialog, select the Cloud category and then Azure Functions. 
 
@@ -18,13 +18,13 @@ To create the function application in Visual Studio, you will need Visual Studio
 
 5. In the New Template dialog, select Http trigger and the following options:
 
-    - Azure Functions v1 (.NET framework). If you prefer, you can also select Azure Functions v2 (.NET core). The advantage of a .NET core function application is that it can run on servers with Linux. However some features are unavailable at this point.
-    - Under Storage Account, select None. This particular sample doesn't require storage. However if your function needs data, tables etc, you may want to connect it to an Azure Storage account.
+    - Azure Functions v1 (.NET Framework). If you prefer, you can also select Azure Functions v2 (.NET Core). The advantage of a .NET core function application is that it can run on servers with Linux. However some features are unavailable at this point.
+    - Under Storage Account, select None. This particular sample doesn't require storage. However if your function needs data, tables, etc., you may want to connect it to an Azure Storage account.
     - Set Access rights to Function.
 
 ![New Template dialog](./Img/2018-01-05_14-02-00.png)
 
-When the function application is created, it gives the default name "Function1" to the function. This is a little unfortunate because you will need to rename it to something more meaningful.
+When the function application is created, it gives the default name "Function1" to the function. You will need to rename it to something more meaningful.
 
 5. Rename the ```Function1.cs``` file to ```Add.cs```.
 
@@ -56,25 +56,25 @@ public static class Add
 
 There are a few interesting things about the code above:
 
-- We changed the ```Run``` method's signature. The Azure runtime will use this information to configure the service. First, we removed the ```"post"``` method because we want this function to only accept ```get``` methods. Then we modified the ```Route``` parameter of the ```HttpTrigger``` attribute. We declare the new route to be ```"add/num1/{num1}/num2/{num2}"```. In the client code, when we call the URL, we will replace ```{num1}``` with the first operand of the addition, and ```{num2}``` with the second operand.
+- We changed the ```Run``` method's signature. The Azure Functions runtime will use this information to configure the service. First, we removed the ```"post"``` method because we want this function to only accept ```get``` methods. Then we modified the ```Route``` parameter of the ```HttpTrigger``` attribute. We declare the new route to be ```"add/num1/{num1}/num2/{num2}"```. In the client code, when we call the URL, we will replace ```{num1}``` with the first operand of the addition, and ```{num2}``` with the second operand.
 
-- We declare two parameters named ```num1``` and ```num2``` of type ```int```. Conveniently, the Azure runtime will automatically convert the ```{num1}``` and ```{num2}``` parts of the URL into the corresponding integers.
+- We declare two parameters named ```num1``` and ```num2``` of type ```int```. Conveniently, the Azure Functions runtime will automatically convert the ```{num1}``` and ```{num2}``` parts of the URL into the corresponding integers.
 
 - We log an entry when the function is called. You can see the log entry in the debug window later, or in the Azure web portal. Logging can be very useful to debug some difficult issues.
 
 - We then execute the addition with the two operands and return the result thanks to a call to the ```CreateResponse``` method.
 
-> Note: since HTTP is a text-based protocol, the result of the addition will be returned to the client as text. Later we will see how modern APIs use the JavaScript Object Notation (JSON) to encode API inputs and outputs. JSON can easily be serialized and deserialized.
+> Note: since HTTP is a text-based protocol, the result of the addition will be returned to the client as text. [Later we will see how modern APIs use the JavaScript Object Notation (JSON)](./refactoring.md) to encode API inputs and outputs. JSON can easily be serialized and deserialized.
 
 ## Testing the function
 
-One of he greatest advantages of Visual Studio over the Azure web portal for function creation and implementation is that you can run the function locallu, which is very convenient for test purposes.
+One of the greatest advantages of Visual Studio over the Azure web portal for function creation and implementation is that you can run the function locally, which is very convenient for test purposes.
 
 1. In the code editor, in Add.cs, place a breakpoint on the first line of the Run method, where the log call is placed.
 
-2. Run the function in debug mode. This will start the Azure Function runtime in a command window.
+2. Run the function in debug mode. This will start the Azure Functions runtime in a command window.
 
-> Note: The Azure runtime which is installed locally is an exact copy of the Azure runtime running in Azure. This is not a simulator. This ensures that you get conditions as closed to reality as possible.
+> Note: The Azure Functions runtime which is installed locally is an exact copy of the Azure Functions runtime running in Azure. This is not a simulator. This ensures that you get conditions as closed to reality as possible.
 
 3. At the bottom of the command window, you will find the local URL of the function. Copy this URL which should be similar to ```http://localhost:7071/api/add/num1/{num1}/num2/{num2}```
 
@@ -88,7 +88,7 @@ One of he greatest advantages of Visual Studio over the Azure web portal for fun
 
 ## Publishing the function to Azure
 
-Now that we have created and tested the function, we can publish it to Azure. In practice for larger applications, the Publishing step would be taken care of by a script and some tooling. Also, we wouldn't publish to a production server first but we would deploy to a test server and run additional tests before moving the code to production.
+Now that we have created and tested the function, we can publish it to Azure. In practice for larger applications, the Publishing step would be taken care of by a script and some tooling. Also, we wouldn't publish to a production server first, but we would deploy to a test server and run additional tests before moving the code to production.
 
 In this simple sample, we will use the Publish feature of Visual Studio instead.
 
@@ -96,7 +96,7 @@ In this simple sample, we will use the Publish feature of Visual Studio instead.
 
 ![Publish](./Img/2018-01-04_11-14-39.png)
 
-2. In the next dialog, select Create New in order to create a new Functions application. In this dialog, you could also select an existing Functions application if you have one that you wish to replace with this one.
+2. In the next dialog, select Create New in order to create a new Functions application. In this dialog, you could also select an existing Functions application if you have one that you wish to replace.
 
 ![Publish dialog](./Img/2018-01-04_11-15-00.png)
 
@@ -118,15 +118,15 @@ In this simple sample, we will use the Publish feature of Visual Studio instead.
 
 ![Successful publication](./Img/2018-01-04_11-32-51.png)
 
-## Getting the URL for the Xamarin client
+## Getting the URL for the Xamarin client app
 
-Later in the sample, we will need the URL of the service for our client. Since all the communication between the client and the server happens over HTTP, the URL is the interface for it.
+Later in the sample, we will need the URL of the service for our client app. Since all the communication between the client and the server happens over HTTP, the URL is the interface for it.
 
 1. Log into the Azure web portal. In the menu on the left, select Function Apps.
 
 ![Azure Web Portal menu](./Img/2018-01-04_11-34-15.png)
 
-2. Locate the functions application that you just published and click on the Add function.
+2. Locate the functions application that you just published and click on the Add menu item.
 
 ![Add function](./Img/2018-01-04_11-34-46.png)
 
