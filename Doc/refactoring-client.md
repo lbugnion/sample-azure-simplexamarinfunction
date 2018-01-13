@@ -59,3 +59,12 @@ Finally, we use the ```Result``` property of the ```AdditionResult``` class. You
 ![Running the updated application in Android](./Img/2018-01-08_18-06-01.png)
 
 Note how the ```Result``` property is now of type ```System.Int32``` instead of ```System.String``` like before. Also, we can pass multiple values from the server to the client, and easily add properties to the ```AdditionResult``` class if needed for new features of the application.
+
+## Conclusion
+
+At this point, we have an Azure Functions application with one HTTP endpoint, and a Xamarin.Forms app running on iOS, Android and Windows 10. The server and the client use JSON to communicate. Modifying and extending the application for your own usage should be straightforward.
+
+This concludes this sample. We hope that you found this code and tutorial useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open, so everyone can see the answers. 
+
+Happy coding!
+[Laurent](https://twitter.com/lbugnion)

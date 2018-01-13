@@ -120,7 +120,7 @@ Now we can test the new function result in the web browser.
 
 Now that the code changed, we will publish the updated function to Azure. The process is easier [than the first time we did that](./creating-vs.md#publishing-the-function-to-azure), because we don't have to specify all the parameters again. 
 
-1. In Visual Studiom in the Solution Explorer, right click on the Azure functions application name and select Publish from the context menu.
+1. In Visual Studio, in the Solution Explorer, right click on the Azure functions application name and select Publish from the context menu.
 
 If everything went well before, the publication parameters should be all saved and available in Visual Studio. You should see something similar to the image below:
 
@@ -130,7 +130,7 @@ If you don't see something like that, you might have to re-publish the applicati
 
 2. Press on the Publish button. You can see the progress in Visual Studio's Output window.
 
-3. After a short while, the changes are published to Azure. You can test the new function's interface by using [the exact same URL we obtained before from the Azure web portal](./creating-vs.md#getting-the-url-for-the-xamarin-client). Simply reload this URL in the web browser, and you should now see a JSON formatted result, including the date/time on the server.
+3. After a short while, the changes are published to Azure. You can test the new function's interface by using [the exact same URL we obtained before from the Azure web portal](./creating-vs.md#getting-the-url-for-the-xamarin-client-app). Simply reload this URL in the web browser, and you should now see a JSON formatted result, including the date/time on the server.
 
 > Note: If you are observant, you might notice that the date/time returned by the server is always the UTC date/time, even if you selected a different region when you created the functions application. This is because all Azure servers run in UTC date/time, to make it easier to let applications communicate with each other.
 

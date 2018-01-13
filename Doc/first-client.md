@@ -234,7 +234,4 @@ To test on Windows 10, you can run the application on the local machine directly
 
 ## Conclusion
 
-We have now tested that the application works well. This concludes this sample. You can now easily modify this application to add features or change the way it works. We hope that you found this sample useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open, so everyone can see the answers. 
-
-Happy coding!
-Laurent
+We have now tested that the application works well. However using simple text to communicate between the server and the client is not very flexible. Adding new properties to the interface would be quite complex. To solve this, we will now refactor [the Azure Function](./refactoring.md) and [the Xamarin client app](./refactoring-client.md) to use the JavaScript Object Notation JSON instead.
