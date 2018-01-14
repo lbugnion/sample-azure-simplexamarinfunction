@@ -78,28 +78,11 @@ The code above creates a new user interface with 4 UI elements placed under each
 
 6. Open the MainPage.xaml.cs now. This C# code file is what we call "code behind". This is the view's controller, where we will handle events and modify the UI accordingly.
 
-7. Replace the ```MainPage``` constructor with the following code:
+7. Modify the MainPage class to look like this:
 
 ```CS
 public partial class MainPage : ContentPage
 {
-    private const string Url = "YOUR URL HERE";
-
-    private HttpClient _client;
-
-    private HttpClient Client
-    {
-        get
-        {
-            if (_client == null)
-            {
-                _client = new HttpClient();
-            }
-
-            return _client;
-        }
-    }
-
     public MainPage()
     {
         InitializeComponent();
@@ -113,65 +96,32 @@ public partial class MainPage : ContentPage
 
             if (!success)
             {
-                await DisplayAlert("Error in inputs", "You must enter two integers", "OK");
+                await DisplayAlert(
+                    "Error in inputs", 
+                    "You must enter two integers", "OK");
                 return;
             }
 
-            Result.Text = "Please wait...";
-            AddButton.IsEnabled = false;
-            Exception error = null;
-
-            try
-            {
-                var url = Url.Replace("{num1}", number1.ToString())
-                    .Replace("{num2}", number2.ToString());
-                var result = await Client.GetStringAsync(url);
-                Result.Text = result + $" {result.GetType()}";
-            }
-            catch (Exception ex)
-            {
-                error = ex;
-            }
-
-            if (error != null)
-            {
-                Result.Text = "Error!!";
-                await DisplayAlert("There was an error", error.Message, "OK");
-            }
-
-            AddButton.IsEnabled = true;
+            var result = number1 + number2;
+            Result.Text = result + $" {result.GetType()}";
         };
     }
 }
 ```
 
-What the code above does is the following:
+Let's review the code above:
 
-- We define a constant for the URL template for the service. You should replace the words ```YOUR URL HERE``` with the URL that you copied in the previous step.
-
-- We define an ```HttpClient``` as a property so that we can easily reuse it. Like the name suggests, the ```HttpClient``` is a class designed for interaction with servers over HTTP. It is the most convenient and simple way to access an HTTP service, such as our HTTP-Triggered function. 
-
-- In the ```MainPage``` constructor, we will handle the Clicked event of the Button control. When this event is called, the event handler will be executed.
+- In the ```MainPage``` constructor, we handle the Clicked event of the Button control. When this event is called, the event handler will be executed.
 
 - We parse the text that the user entered. We want to make sure that we send integers to the server, to avoid error there. Parsing the text with the ```TryParse``` method ensures that the user input is suitable.
 
 - If the user enters incorrect inputs, we show a warning message and we stop the execution.
 
-- We show a message to the user saying ```Please wait```. This is because we will perform an asynchronous operation that could take a moment, and it is nice to let the user know what's happening. On the next line, we also disable the ```AddButton``` to avoid that the user presses the button again while the operation is active.
+- If the user input is correct, we perform the addition.
 
-The next execution block is placed in a ```try/catch``` so that we catch any potential error and inform the user accordingly. The ```HttpClient``` may throw an exception if the server is down, or if there is a server error for example. If such an exception occurs, we need to make sure that the application doesn't crash, and that the user knows what happened.
+- Finally, we show the result to the user, as well as the type of the result.
 
-- We create the URL out of the URL template declared as a constant higher up. In this URL, the first and second numbers are defined as ```{num1}``` and ```{num2}```. 
-
-- The next line is the call to the ```GetStringAsync``` method of the ```HttpClient```. This method is asynchronous, like the name suggests. This is why we use the ```await``` keyword when we call it. 
-
-> Note: Calling the method with the ```await``` keyword does not block the method's execution. It means that the user interface will remain usable. This is why informing the user is important.
-
-- If everything works well, we show the result of the operation to the user. In this sample I am also showing the type of the result, which is a string (as returned by the web service). [Later we will see how we can modify this part](./refactoring-client.md) to make it more convenient to use.
-
-- Outside of the try/catch block, we check if there was an error. Note that you cannot use DisplayAlert asynchronously from within the ```catch``` block because the ```await``` keyword is not allowed there. This is why we saved the potential error, and later we check if there was an error, and show the message to the user if needed.
-
-- Finally, we re-enable the ```AddButton``` so the user can try another operation.
+Now we can test the application and see if it works as expected.
 
 ## Testing the app
 
@@ -193,44 +143,20 @@ For example, here is how you can test the app on Android:
 
 4. In the emulator window, enter two operands and press the Add button. After a short wait, you should see the result.
 
-![Android application](./Img/2018-01-04_15-30-54.png)
+![Android application](./Img/2018-01-14_10-57-00.png)
 
-### On iOS
+### On iOS and Windows
 
-On iOS you can run the app in the iOS simulator to test it.
-
-1. Right-click on the iOS application and select "Set as Startup Project".
-
-![iOS application](./Img/2018-01-04_20-33-16.png)
-
-2. Make sure that "iPhoneSimulator" and a simulator are selected in the toolbar.
-
-![Run button](./Img/2018-01-04_20-33-37.png)
-
-3. Press the Run button to debug the code.
-
-4. In the simulator window, enter two operands and press the Add button. After a short wait, you should see the result.
-
-![iOS application](./Img/2018-01-04_20-35-52.png)
-
-### On Windows (UWP)
-
-To test on Windows 10, you can run the application on the local machine directly from Visual Studio 2017.
-
-1. Right-click on the UWP application and select "Set as Startup Project".
-
-![Set as StartUp Project](./Img/2018-01-04_15-18-41.png)
-
-2. Make sure that x86 and Local Machine are selected in the toolbar.
-
-![Run button](./Img/2018-01-04_15-19-44.png)
-
-3. Press the Run button to debug the code.
-
-4. In the window that opens up, enter two operands and press the Add button. After a short wait, you should see the result.
-
-![Windows UWP application](./Img/2018-01-04_15-24-40.png)
+You can of course also test on iOS and Windows. To do this [you can follow the steps described here](./second-client.md#testing-the-client-app). The result you will see should be very similar to what you see on Android.
 
 ## Conclusion
 
-We have now tested that the application works well. However using simple text to communicate between the server and the client is not very flexible. Adding new properties to the interface would be quite complex. To solve this, we will now refactor [the Azure Function](./refactoring.md) and [the Xamarin client app](./refactoring-client.md) to use the JavaScript Object Notation JSON instead.
+Our "offline" client app works great, but now is the time to leverage the power of the cloud. Of course for this extremely simple sample, putting code in the cloud makes literally no sense. However there are many other scenarios where leveraging Azure is a great idea:
+
+- You can take advantage of a server to process calculations that would be too complex or too slow on a mobile client.
+
+- You can have one server processing the code and caching the results instead of thousands of mobile clients, thus saving resources.
+
+- and dozens more reasons.
+
+We will now show you how to create an Azure Functions app ([in the Azure portal](./creating.md) or [in Visual Studio 2017](./creating-vs.md)), move the business logic code from the Xamarin client app to the cloud, and then [modify the Xamarin client app](./second-client.md) to use this new online resource.
