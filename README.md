@@ -8,13 +8,15 @@ Later we will refine this application by using JSON as a communication medium be
 
 ## Table of content
 
+- [Implementing the first version of the Xamarin.Forms client](./Doc/first-client.md).
+
 - [Creating the Azure Function in the Azure Web Portal](./Doc/creating.md).
 
     - [Modifying the function's interface and implementing it](./Doc/implementing.md).
 
 - [Creating the Azure Function in Visual Studio](./Doc/creating-vs.md).
 
-- [Implementing the first version of the Xamarin.Forms client](./Doc/first-client.md).
+- [Modifying the Xamarin.Forms client to use the Azure Function](./Doc/second-client.md).
 
 ## Modifying the application to use JavaScript Object Notation JSON instead
 

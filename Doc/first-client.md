@@ -1,11 +1,10 @@
 # Implementing the first version of the Xamarin.Forms client app
 
-We know that our function works well now, because we tested it [in the Azure Portal](./implementing.md#testing-the-new-signature) and [in Visual Studio 2017](./creating-vs.md#testing-the-function). Now we will build a Xamarin.Forms client app that runs on iOS, Android and Windows to use this new function.
+We will start this sample by creating a Xamarin.Forms client app which works offline. Then we will see how we can transfer the business logic of this app to the Azure cloud.
 
-In the previous step, we copied the function's URL for later usage. Make sure to keep this URL handy, we will need it later in the client's code.
+> Note: If you are already familiar with Xamarin.Forms, you can jump to the next step without fear. You will find the client that we create in this page in [the XamCalculator - Start folder](TODO).
 
-- [Copying the URL when creating the Function in the Azure Portal](./implementing.md#getting-the-url-for-the-xamarin-client)
-- [Copying the URL when creating the Function in Visual Studio 2017](./creating-vs.md#getting-the-url-for-the-xamarin-client-app)
+The Xamarin client app that we create here is extremely simple and obviously not a real life scenario. However it shows all the steps necessary to creating the client and the server applications, and it should give you a good jumpstart into your own projects and use cases.
 
 1. In Visual Studio 2017, select File > New > Project.
 
