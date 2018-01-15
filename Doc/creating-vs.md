@@ -4,7 +4,7 @@ The great thing with the Azure tooling is that you can decide what tools you are
 
 ## Creating the function application
 
-To create the function application in Visual Studio, you will need Visual Studio 2017. You can perform these steps in any edition of Visual Studio, [including the free Community edition](TODO_LINK). In the installer, make sure that the Azure development workload is installed.
+To create the function application in Visual Studio, you will need Visual Studio 2017. You can perform these steps in any edition of Visual Studio, [including the free Community edition](http://gslb.ch/a72). In the installer, make sure that the Azure development workload is installed.
 
 ![Visual Studio installer](./Img/2018-01-05_13-43-24.png)
 
@@ -110,7 +110,7 @@ In this simple sample, we will use the Publish feature of Visual Studio instead.
 
 - Resource group: This is a logical grouping of your application's resources, to make it easier to manage them. You can create a new resource group or select am existing one.
 
-- App service plan: TODO
+- App service plan: This is the billing plan that you can use for this Azure Functions application. App Service plans can also be used for other app services such as web applications, web APIs, etc.
 
 ![Create App Service](./Img/2018-01-04_11-30-09.png)
 
