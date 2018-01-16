@@ -18,11 +18,11 @@ To create the function application in Visual Studio, you will need Visual Studio
 
 5. In the New Template dialog, select Http trigger and the following options:
 
-    - Azure Functions v1 (.NET Framework). If you prefer, you can also select Azure Functions v2 (.NET Core). The advantage of a .NET core function application is that it can run on servers with Linux. However some features are unavailable at this point.
+    - Azure Functions v2 Preview (.NET Core). If you prefer, you can also select Azure Functions v1 (.NET Framework). The advantage of a .NET core function application is that it can run on servers with Linux. However some features are unavailable at this point.
     - Under Storage Account, select None. This particular sample doesn't require storage. However if your function needs data, tables, etc., you may want to connect it to an Azure Storage account.
     - Set Access rights to Function.
 
-![New Template dialog](./Img/2018-01-05_14-02-00.png)
+![New Template dialog](./Img/2018-01-15_15-01-00.png)
 
 When the function application is created, it gives the default name "Function1" to the function. You will need to rename it to something more meaningful.
 
@@ -34,12 +34,12 @@ When the function application is created, it gives the default name "Function1" 
 public static class Add
 {
     [FunctionName("Add")]
-    public static HttpResponseMessage Run(
+    public static IActionResult Run(
         [HttpTrigger(
             AuthorizationLevel.Function, 
             "get",
             Route = "add/num1/{num1}/num2/{num2}")]
-        HttpRequestMessage req, 
+        HttpRequest req, 
         int num1,
         int num2,
         TraceWriter log)
@@ -48,8 +48,7 @@ public static class Add
 
         var addition = num1 + num2;
 
-        // Fetching the name from the path parameter in the request URL
-        return req.CreateResponse(HttpStatusCode.OK, addition);
+        return new OkObjectResult(addition);
     }
 }
 ```
@@ -62,7 +61,7 @@ There are a few interesting things about the code above:
 
 - We log an entry when the function is called. You can see the log entry in the debug window later, or in the Azure web portal. Logging can be very useful to debug some difficult issues.
 
-- We then execute the addition with the two operands and return the result thanks to a call to the ```CreateResponse``` method.
+- We then execute the addition with the two operands and return an ```OkObjectResult``` which will translate to an OK HTTP response .
 
 > Note: since HTTP is a text-based protocol, the result of the addition will be returned to the client as text. [Later we will see how modern APIs use the JavaScript Object Notation (JSON)](./refactoring.md) to encode API inputs and outputs. JSON can easily be serialized and deserialized.
 
@@ -78,13 +77,13 @@ One of the greatest advantages of Visual Studio over the Azure web portal for fu
 
 3. At the bottom of the command window, you will find the local URL of the function. Copy this URL which should be similar to ```http://localhost:7071/api/add/num1/{num1}/num2/{num2}```
 
-![Command window with Function runtime](./Img/2018-01-05_15-19-23.png)
+![Command window with Function runtime](./Img/2018-01-15_15-57-00.png)
 
 4. Open a web browser window and paste the URL in the location bar.
 
 5. In the URL, replace ```{num1}``` with an integer, for example 12. Then replace ```{num2}``` with another integer, for example 34. Then press Enter to load the page.
 
-6. The application should break in the debugger in Visual Studio, at the breakpoint that you placed earlier. You can now inspect the ```num1``` and ```num2``` operands, and step through the function's code to debug it.
+6. The application should break in the debugger in Visual Studio, at the breakpoint that you placed earlier. You can now inspect the ```num1``` and ```num2``` operands, and step through the function's code to debug it. Finally you should see the result, for example ```46``` in the web browser window.
 
 ## Publishing the function to Azure
 
