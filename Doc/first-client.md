@@ -2,7 +2,7 @@
 
 We will start this sample by creating a Xamarin.Forms client app which works offline. Then we will see how we can transfer the business logic of this app to the Azure cloud.
 
-> Note: If you are already familiar with Xamarin.Forms, you can jump to the next step without fear. You will find the client that we create in this page in [the XamCalculator - Start folder](TODO).
+> Note: If you are already familiar with Xamarin.Forms, you can jump to the next step without fear. You will find the client that we create in this page in [the XamCalculator - Start folder](https://github.com/lbugnion/sample-azure-simplexamarinfunction/tree/master/XamCalculator%20-%20Start).
 
 The Xamarin client app that we create here is extremely simple and obviously not a real life scenario. However it shows all the steps necessary to creating the client and the server applications, and it should give you a good jumpstart into your own projects and use cases.
 

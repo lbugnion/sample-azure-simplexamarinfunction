@@ -7,7 +7,7 @@ In the previous step, we copied the function's URL for later usage. Make sure to
 - [Copying the URL when creating the Function in the Azure Portal](./implementing.md#getting-the-url-for-the-xamarin-client)
 - [Copying the URL when creating the Function in Visual Studio 2017](./creating-vs.md#getting-the-url-for-the-xamarin-client-app)
 
-1. Open the previous state of the Xamarin client app XamCalculator. If you skipped building the offline client, [you can get the application from here](TODO_LINK).
+1. Open the previous state of the Xamarin client app XamCalculator. If you skipped building the offline client, [you can get the application from here](https://github.com/lbugnion/sample-azure-simplexamarinfunction/tree/master/XamCalculator%20-%20Start).
 
 2. Open the MainPage.xaml.cs file.
 
