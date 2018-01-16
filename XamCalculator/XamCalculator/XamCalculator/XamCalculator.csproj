@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Documents\sample-azure-simplexamarinfunction\LbCalculator\Calculator.Data\Calculator.Data.csproj" />
+    <ProjectReference Include="..\..\..\LbCalculator\Calculator.Data\Calculator.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
