@@ -7,7 +7,11 @@ In the previous step, we copied the function's URL for later usage. Make sure to
 - [Copying the URL when creating the Function in the Azure Portal](./implementing.md#getting-the-url-for-the-xamarin-client)
 - [Copying the URL when creating the Function in Visual Studio 2017](./creating-vs.md#getting-the-url-for-the-xamarin-client-app)
 
-7. Replace the ```MainPage``` constructor with the following code:
+1. Open the previous state of the Xamarin client app XamCalculator. If you skipped building the offline client, [you can get the application from here](TODO_LINK).
+
+2. Open the MainPage.xaml.cs file.
+
+3. Replace the ```MainPage``` constructor with the following code:
 
 ```CS
 public partial class MainPage : ContentPage
@@ -104,9 +108,11 @@ The next execution block is placed in a ```try/catch``` so that we catch any pot
 
 ## Testing the client app
 
+Time to test the new client which connects to the Azure Function! Again you can test on emulator/simulator, or you can deploy on a real device if you prefer.
+
 ### Testing on Android
 
-For example, here is how you can test the app on Android:
+Here is how you can test the app on Android:
 
 1. Right-click on the Android application and select "Set as Startup Project".
 
