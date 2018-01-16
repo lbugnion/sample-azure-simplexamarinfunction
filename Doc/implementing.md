@@ -112,7 +112,7 @@ public static HttpResponseMessage Run(
 
 Interestingly, in the code above we simply declared that ```num1``` and ```num2``` are integers, and the Azure Functions runtime automatically parsed the values from the URL into integers for us. This is quite convenient.
 
-## Getting the URL for the Xamarin client
+## Getting the URL for the Xamarin client app
 
 Later in the sample, we will need the URL of the service for our client. Since all the communication between the client and the server happens over HTTP, the URL is the interface for it.
 

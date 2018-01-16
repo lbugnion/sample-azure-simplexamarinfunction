@@ -8,7 +8,7 @@ To create the Azure Functions application in the Azure portal, follow these step
 
 1. Log into the [Azure Portal](http://portal.azure.com) with your user account.
 
-> Note: You will need an Azure account to create this sample. If you don't have one already, [you can get a free trial account here](http://azure.microsoft.com/free).
+> Note: You will need an Azure account to create this sample. If you don't have one already, [you can get a free trial account here](http://gslb.ch/a17).
 
 2. Click the "Create a resource" menu item.
 

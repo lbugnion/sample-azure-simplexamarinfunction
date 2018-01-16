@@ -105,7 +105,7 @@ In this simple sample, we will use the Publish feature of Visual Studio instead.
 
 > Note: The function's name should be unique and will appear in the function's URL. For example if the function is named LbCalculator, the domain will be https://lbcalculator.azurewebsites.net.
 
-- Subscription: This is the Azure subscription that will be billed. Note that you can create a free subscription for trial at https://azure.microsoft.com/free
+- Subscription: This is the Azure subscription that will be billed. Note that you can create a free subscription for trial at [https://azure.microsoft.com/free](http://gslb.ch/a17).
 
 - Resource group: This is a logical grouping of your application's resources, to make it easier to manage them. You can create a new resource group or select am existing one.
 
@@ -139,6 +139,6 @@ Later in the sample, we will need the URL of the service for our client app. Sin
 
 ## Conclusion
 
-Our function's code is now complete and available for additional features in Visual Studio. We can now [move to the client's implementation](./first-client.md).
+Our function's code is now complete and available for additional features in Visual Studio. We can now [modify to the client app's implementation to use the function](./second-client.md).
 
 Later we will also refactor [the server](./refactoring.md) and [the client](./refactoring-client.md) to use JavaScript Object Notation JSON to communicate.

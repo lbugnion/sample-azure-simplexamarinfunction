@@ -1,4 +1,4 @@
-# Refactoring the Xamarin client to use JSON
+# Refactoring the Xamarin client app to use JSON
 
 The function is now returning a JSON-formatted string. Thankfully parsing JSON in C# is extremely easy with the help of the [JSON.NET Nuget package](https://www.nuget.org/packages/Newtonsoft.Json). In this section, we will add the Nuget package to our Xamarin application, and then modify the code slightly to take advantage of this package and deserialize the JSON result.
 
@@ -54,7 +54,7 @@ The changes to the client application are very minor: We use exactly the same UR
 
 The next step is to deserialize the JSON into an instance of the ```AdditionResult``` class. This is the exact same class that we used on the server. The JSON format is only used for the HTTP transport. 
 
-Finally, we use the ```Result``` property of the ```AdditionResult``` class. You can now test the application again in iOS, Android or in Windows 10 UWP (following [the instructions we used earlier](./first-client.md#testing-the-app)). For example, here is the application running in the Android emulator:
+Finally, we use the ```Result``` property of the ```AdditionResult``` class. You can now test the application again in iOS, Android or in Windows 10 UWP (following [the instructions we used earlier](./first-client.md#testing-the-client-app)). For example, here is the application running in the Android emulator:
 
 ![Running the updated application in Android](./Img/2018-01-08_18-06-01.png)
 
@@ -67,4 +67,5 @@ At this point, we have an Azure Functions application with one HTTP endpoint, an
 This concludes this sample. We hope that you found this code and tutorial useful. Please don't hesitate to enter comments and questions in the Issues tab above. You can also contact me privately but I prefer to keep the discussion in the open, so everyone can see the answers. 
 
 Happy coding!
+
 [Laurent](https://twitter.com/lbugnion)
