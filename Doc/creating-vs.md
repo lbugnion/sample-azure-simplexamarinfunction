@@ -91,7 +91,7 @@ One of the greatest advantages of Visual Studio over the Azure web portal for fu
 
 Now that we have created and tested the function, we can publish it to Azure. In practice for larger applications, the Publishing step would be taken care of by a script and some tooling. Also, we wouldn't publish to a production server first, but we would deploy to a test server and run additional tests before moving the code to production.
 
-In this simple sample, we will use the [Publish feature of Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio#publish-the-project-to-azure) instead.
+In this simple sample, we will use the [Publish feature of Visual Studio](http://gslb.ch/a76) instead.
 
 1. In the Solution Explorer, right click on the functions application and select Publish from the context menu.
 
@@ -105,7 +105,7 @@ In this simple sample, we will use the [Publish feature of Visual Studio](https:
 
 - App Name: This is the name that will be used in the Azure portal.
 
-> Note: The function's name should be unique and will appear in the function's URL. For example if the function is named LbCalculator, the domain will be https://lbcalculator.azurewebsites.net.
+> Note: The function's name should be unique and will appear in the function's URL. For example if the function is named LbCalculator, the domain will be ```https://lbcalculator.azurewebsites.net```.
 
 - Subscription: This is the Azure subscription that will be billed. Note that you can create a free subscription for trial at [https://azure.microsoft.com/free](http://gslb.ch/a17).
 

@@ -1,6 +1,6 @@
 # Creating the Azure Function in the Azure Web Portal
 
-In this section, we will build the Azure Functions application in the Azure web portal and then add an HTTP Triggered function. This will allow us to call the function from the Xamarin client, for example with an [HttpClient](https://developer.xamarin.com/api/type/System.Net.Http.HttpClient/) instance.
+In this section, we will build the Azure Functions application in the Azure web portal and then add an HTTP Triggered function. This will allow us to call the function from the Xamarin client, for example with an [HttpClient](http://gslb.ch/a75) instance.
 
 > Note: If you prefer, you can create the Azure Function in Visual Studio 2017 instead. [A detailed tutorial can be found here](./creating-vs.md).
 
